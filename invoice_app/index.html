@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Nobile" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Faster+One" rel="stylesheet"> -->
+    <title>Invoice App</title>
+    <style>
+        body {
+            margin: 10% 4% 4% 4%;
+            background-color: yellow;
+
+
+        }
+
+        .userContainer {
+            display: flex;
+            height: 25em;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .invoiceContainer {
+            margin-top: 4em;
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            height: auto;
+            border: floralwhite;
+
+        }
+
+        .userProfile {
+            border: 1px solid black;
+            display: flex;
+            width: 60%;
+            height: 100%;
+            background: greenyellow;
+
+        }
+
+        .user {
+            height: auto;
+        }
+
+        #picContainer {
+            width: 40%;
+            margin: 8% 0% 8% 3%;
+            background-color: #4D6076;
+        }
+
+        #infoContainer {
+            margin: 5% 2% 2% 2%;
+            width: 60%;
+            font-family: Nobile;
+            font-size: 20px;
+            background-image: url(https://bit.ly/2tSw4hI);
+            /* font-family: 'Faster One'; */
+            color: red;
+
+        }
+
+        #infoContainer>p.name {
+            color: blue;
+
+        }
+
+        #infoContainer>p.companyName {
+            color: blueviolet;
+        }
+
+#infoContainer > p.address{
+    color: palevioletred;
+}
+
+
+#infoContainer > p.email{
+    font-size: 25px;
+}
+
+
+
+        p {
+            font-size: 22px;
+            color: green;
+        }
+
+        p :: name {
+            font-size: 30px;
+        }
+
+        img {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .invoice {
+            border: 1px solid black;
+            margin: 6% 3% 0% 3%;
+            padding: 2%;
+            width: 250px;
+            height: auto;
+            font-family: cursive;
+            border-radius: 25px;
+
+
+        }
+
+        .invoice>p {
+            position: relative;
+            margin: 5px;
+            left: 25%;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="userContainer">
+        <div class="userProfile">
+            <div class="user" id="picContainer">
+                <img src="techlaunch.png" alt="techLaunch Logo">
+            </div>
+
+            <div class="user" id="infoContainer">
+                Name:
+                <p class="name"></p>
+                Company mame:
+                <p class="companyName"></p>
+                Adress:
+                <p class="address"></p>
+                Email:
+                <p class="email"></p>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <div class="invoiceContainer"></div>
+    <p>Invoices</p>
+
+    <script>
+        //Fake it til you make it Database
+        var user = {
+            name: "vlad",
+            companyName: "Cutting Edge Investments",
+            address: "1221 Stirling rd",
+            email: "vladikc91@gmail.com",
+            picture: "techlaunch.png"
+        }
+
+        var invoices = [
+            {
+                inv_id: "0156321",
+                companyName: user.companyName,
+                date: "9/7/2017",
+                order: "Books",
+                amount: 100,
+                cost: 50.00,
+                paid: 50.00
+            },
+            {
+                inv_id: "0145632",
+                companyName: user.companyName,
+                date: "1/5/2017",
+                order: "Sofa",
+                amount: 1,
+                cost: 1200.00,
+                paid: 1000.00
+            },
+            {
+                inv_id: "0132110",
+                companyName: user.companyName,
+                date: "6/14/2016",
+                order: "Paper",
+                amount: 160,
+                cost: 414.00,
+                paid: 414.00
+            },
+
+            {
+                inv_id: "01478555",
+                companyName: user.companyName,
+                date: "6/16/2016",
+                order: "Office rental",
+                amount: 1,
+                cost: 3000.00,
+                paid: 2500.00
+            },
+
+            {
+                inv_id: "1874349",
+                companyName: user.companyName,
+                date: "1/1/2018",
+                order: "Desk",
+                amount: 3,
+                cost: 450.00,
+                paid: 400.00
+            },
+
+            {
+                inv_id: "0132110",
+                companyName: user.companyName,
+                date: "6/14/2016",
+                order: "Pens",
+                amount: 160,
+                cost: 2.00,
+                paid: 2.00
+            }
+
+
+
+
+
+
+
+        ]
+
+        //  var background_pictures_invoce = ["\img_vlads_backgrounds\0.png", "\img_vlads_backgrounds\1.png", "\img_vlads_backgrounds\2.png"];
+
+        //element selectors
+        document.querySelector(".name").textContent = user.name
+        document.querySelector(".companyName").textContent = user.companyName
+        document.querySelector(".address").textContent = user.address
+        document.querySelector(".email").textContent = user.email
+
+
+        // adding invoices
+        for (var i = 0; i < invoices.length; i++) {
+            document.querySelector('.invoiceContainer').innerHTML += `
+            <div class="invoice" id=${invoices[i].inv_id}   style="background-image: url('https://www.colourbox.com/preview/1664994-pressed-paper.jpg')"  >
+                Invoice #:   <br/>    
+                <p>${invoices[i].inv_id} </p>
+                Company Name:   <br /> 
+                <p>${invoices[i].companyName} </p>
+                Date:  <br />
+                <p> ${invoices[i].date} </p>
+                Order:  <br />   
+                <p>${invoices[i].order} </p>
+                Amount:   <br />     
+                <p>${invoices[i].amount} </p>
+                Cost:       <br />    
+                <p>$${invoices[i].cost} </p>
+                Paid:       <br />   
+                <p> $${invoices[i].paid} </p>
+                Owed:        <br />   
+                <p>$${invoices[i].cost - invoices[i].paid} </p>
+                
+            </div>
+            `
+        }
+
+
+    </script>
+</body>
+
+</html>
